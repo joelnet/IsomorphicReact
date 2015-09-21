@@ -1,11 +1,11 @@
 ﻿namespace IsomorphicReact.Services
 {
-    using Jint;
     using System;
     using System.Configuration;
     using System.IO;
-    using System.Web;
     using System.Linq;
+    using System.Web;
+    using Jint;
 
     public class ReactService
     {
@@ -16,7 +16,7 @@
         {
             var react = File.ReadAllText(ReactService.reactPath);
             var components = Directory.GetFiles(ReactService.reactComponentPath, "*.js")
-                .Select(o => File.ReadAllText(o));
+                .Select(File.ReadAllText);
             var engine = new Engine().Execute(react);
 
             foreach (var component in components)
@@ -24,7 +24,7 @@
                 engine.Execute(component);
             }
 
-            engine.Execute("var console = { warn: function(){} }");
+            ////engine.Execute("var console = { warn: function(){} }");
 
             engine.Execute(
                 @"function renderToString(componentName, properties) {
@@ -35,13 +35,9 @@
             return engine;
         });
 
-        public ReactService()
-        {
-        }
-
         public string ExecuteComponent(string componentName, object properties)
         {
-            return engine.Value
+            return this.engine.Value
                 .Invoke("renderToString", componentName, properties)
                 .ToString();
         }

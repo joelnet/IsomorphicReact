@@ -1,12 +1,13 @@
 ﻿@using Newtonsoft.Json
+@using IsomorphicReact.Helpers
 @model IsomorphicReact.Models.IndexViewModel
 
-<h1>React Component</h1>
+<h1>Isomorphic React Component</h1>
 
-This component has been rendered on the server:
+This React Timer component has been rendered on the server:
 
 <blockquote>
-    <div id="timer">@Html.Raw(Model.TimerHtml)</div>
+    <div id="timer">@Html.Raw(ReactHelper.ExecuteComponent("Timer", Model.Props))</div>
 </blockquote>
 
 <p>We can also activate the client side rendering on the same component. <a href="#" id="start">start client side React</a></p>
