@@ -6,10 +6,8 @@ var paths = {
     jsDestination: "./Scripts"
 };
 
-
-
 gulp.task("jsx", function () {
     return gulp.src(paths.jsx)
         .pipe(react())
-        .pipe(gulp.dest(paths.jsDestination))
+        .pipe(gulp.dest(paths.jsDestination));
 });
