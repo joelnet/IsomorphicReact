@@ -1,0 +1,7 @@
+{
+  "name": "IsomorphicReact",
+  "version": "1.0.0",
+  "devDependencies": {
+    "gulp-react": "~3.0.1"
+  }
+}
